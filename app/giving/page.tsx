@@ -5,7 +5,6 @@ import { Heart, Landmark, CreditCard, CheckCircle, AlertCircle, Copy, Loader2 } 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { generatePaymentReference, formatAmountForPaystack, type PaystackCallbackResponse } from "@/lib/paystack";
-import PaystackPop from "@paystack/inline-js";
 
 const givingPurposes = [
   { value: "tithe", label: "Tithe" },
@@ -131,6 +130,7 @@ export default function GivingPage() {
 
       const { data } = await response.json();
 
+      const { default: PaystackPop } = await import("@paystack/inline-js");
       const paystack = new (PaystackPop as any)();
       paystack.newTransaction({
         key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
