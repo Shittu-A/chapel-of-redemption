@@ -24,8 +24,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface TiptapEditorProps {
-  content: string;
-  onChange: (content: string) => void;
+  content: any;
+  onChange: (content: any) => void;
   placeholder?: string;
 }
 

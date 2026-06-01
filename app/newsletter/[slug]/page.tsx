@@ -1,3 +1,4 @@
+import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -193,7 +194,7 @@ function renderTiptapNode(node: any): React.ReactNode {
 
     case "heading":
       const level = node.attrs?.level || 2;
-      const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+      const HeadingTag = `h${level}` as React.ElementType;
       return (
         <HeadingTag className="text-xl md:text-2xl font-bold text-stone-900 mt-8 mb-4">
           {node.content?.map((child: any, index: number) => (

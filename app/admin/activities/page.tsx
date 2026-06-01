@@ -12,7 +12,7 @@ import { Loader2, Plus, Pencil, Trash2, Calendar, Play } from "lucide-react";
 interface Activity {
   id: string;
   title: string;
-  date: string;
+  activity_date: string;
   category: "worship" | "outreach" | "event" | "programme" | "other";
   youtube_url: string;
   created_at: string;
@@ -35,7 +35,7 @@ export default function ActivitiesPage() {
 
   const [form, setForm] = useState({
     title: "",
-    date: "",
+    activity_date: "",
     category: "worship" as Activity["category"],
     youtube_url: "",
   });
@@ -49,7 +49,7 @@ export default function ActivitiesPage() {
     const { data } = await supabase
       .from("activities")
       .select("*")
-      .order("date", { ascending: false });
+      .order("activity_date", { ascending: false });
     
     if (data) {
       setActivities(data);
@@ -60,7 +60,7 @@ export default function ActivitiesPage() {
   const handleSave = async () => {
     const payload = {
       title: form.title,
-      date: form.date,
+      activity_date: form.activity_date,
       category: form.category,
       youtube_url: form.youtube_url,
     };
@@ -73,7 +73,7 @@ export default function ActivitiesPage() {
 
     setIsDialogOpen(false);
     setSelectedActivity(null);
-    setForm({ title: "", date: "", category: "worship", youtube_url: "" });
+    setForm({ title: "", activity_date: "", category: "worship", youtube_url: "" });
     loadActivities();
   };
 
@@ -89,13 +89,13 @@ export default function ActivitiesPage() {
       setSelectedActivity(activity);
       setForm({
         title: activity.title,
-        date: activity.date,
+        activity_date: activity.activity_date,
         category: activity.category,
         youtube_url: activity.youtube_url,
       });
     } else {
       setSelectedActivity(null);
-      setForm({ title: "", date: "", category: "worship", youtube_url: "" });
+      setForm({ title: "", activity_date: "", category: "worship", youtube_url: "" });
     }
     setIsDialogOpen(true);
   };
@@ -152,7 +152,7 @@ export default function ActivitiesPage() {
                     </span>
                     <span className="text-sm text-stone-500 flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
-                      {formatDate(activity.date)}
+                      {formatDate(activity.activity_date)}
                     </span>
                   </div>
                   <h3 className="font-medium text-stone-900">{activity.title}</h3>
@@ -213,8 +213,8 @@ export default function ActivitiesPage() {
               <Label>Date</Label>
               <Input
                 type="date"
-                value={form.date}
-                onChange={(e) => setForm({ ...form, date: e.target.value })}
+                value={form.activity_date}
+                onChange={(e) => setForm({ ...form, activity_date: e.target.value })}
               />
             </div>
             <div className="space-y-2">

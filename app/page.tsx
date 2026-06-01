@@ -76,12 +76,13 @@ export default function HomePage() {
                 Watch our latest message and be inspired by God&apos;s Word. 
                 Subscribe to our YouTube channel for more content.
               </p>
-              <Button asChild className="bg-stone-800 hover:bg-stone-700">
-                <Link href="/activities">
-                  <Play className="mr-2 h-4 w-4" />
-                  Watch More Videos
-                </Link>
-              </Button>
+              <Link
+                href="/activities"
+                className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-stone-800 px-2.5 h-8 text-sm font-medium text-white hover:bg-stone-700 transition-colors"
+              >
+                <Play className="h-4 w-4" />
+                Watch More Videos
+              </Link>
             </div>
             <div className="aspect-video rounded-2xl overflow-hidden bg-stone-200 shadow-lg">
               <iframe
